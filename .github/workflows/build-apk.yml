@@ -22,13 +22,15 @@ jobs:
           java-version: '17'
 
       - name: Make gradlew executable
+        working-directory: caption/android
         run: chmod +x gradlew
 
       - name: Build APK
+        working-directory: caption/android
         run: ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug-apk
-          path: '**/build/outputs/apk/**/*.apk'
+          name: captions-ai-apk
+          path: caption/android/**/build/outputs/apk/**/*.apk
